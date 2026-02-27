@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobsNow - Find Your Perfect Work From Home Job Today</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #059669;
+            --accent: #ea580c;
+            --text-dark: #0f172a;
+            --text-light: #475569;
+            --text-muted: #94a3b8;
+            --bg-white: #ffffff;
+            --bg-gray: #f8fafc;
+            --border: #e2e8f0;
+            --font-heading: 'Plus Jakarta Sans', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: var(--bg-white);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .bg-grid {
+            background-image: radial-gradient(#e2e8f0 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+            padding: 12px 0;
+            transition: all 0.3s ease;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 800;
+            font-family: var(--font-heading);
+            letter-spacing: -0.03em;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .join-now-btn {
+            background: var(--primary);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 9999px;
+            font-size: 14px;
+            font-weight: 700;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+        }
+
+        .join-now-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(37, 99, 235, 0.3);
+        }
+
+        .header-badge {
+            background: #f0fdf4;
+            color: var(--secondary);
+            padding: 6px 14px;
+            border-radius: 9999px;
+            font-size: 13px;
+            font-weight: 600;
+            border: 1px solid #dcfce7;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 100px 0 80px;
+            text-align: center;
+            background: radial-gradient(circle at 50% 0%, #eff6ff 0%, transparent 70%);
+            position: relative;
+        }
+
+        .urgency-badge {
+            display: inline-flex;
+            align-items: center;
+            background: #fff7ed;
+            color: var(--accent);
+            padding: 8px 18px;
+            border-radius: 9999px;
+            font-size: 13px;
+            font-weight: 800;
+            margin-bottom: 32px;
+            border: 1px solid #ffedd5;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .hero h1 {
+            font-size: 64px;
+            margin-bottom: 24px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            color: var(--text-dark);
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: var(--text-light);
+            margin-bottom: 48px;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 400;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            display: block;
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--primary);
+            font-family: var(--font-heading);
+            letter-spacing: -0.02em;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Job Categories */
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .job-categories {
+            padding: 100px 0;
+            background: var(--bg-gray);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--text-dark);
+            margin-bottom: 16px;
+        }
+
+        .section-title p {
+            color: var(--text-light);
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+        }
+
+        .category-card {
+            background: white;
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            min-height: 320px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .category-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+
+        .card-apply-btn {
+            margin-top: auto;
+            background: var(--bg-gray);
+            color: var(--primary);
+            padding: 14px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border);
+        }
+
+        .category-card:hover .card-apply-btn {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .category-icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .category-name {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .category-pay {
+            color: var(--secondary);
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .category-desc {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        /* How to Apply */
+        .how-to-apply {
+            padding: 80px 0;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .step-item {
+            position: relative;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-weight: 700;
+        }
+
+        .step-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .step-desc {
+            font-size: 15px;
+            color: var(--text-light);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background: var(--bg-gray);
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .stars {
+            color: #fbbf24;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        /* Urgency Section */
+        .urgency-section {
+            padding: 80px 0;
+        }
+
+        .job-card {
+            background: white;
+            padding: 32px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: relative;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+
+        .job-card:hover {
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary);
+        }
+
+        .hiring-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #fef2f2;
+            color: #ef4444;
+            padding: 6px 12px;
+            border-radius: 9999px;
+            font-size: 11px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .hiring-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: #ef4444;
+            border-radius: 50%;
+            display: inline-block;
+            animation: pulse-red 2s infinite;
+        }
+
+        @keyframes pulse-red {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+        }
+
+        .job-company {
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .job-role {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--text-dark);
+        }
+
+        .job-salary {
+            font-weight: 700;
+            color: var(--secondary);
+            font-size: 18px;
+        }
+
+        .apply-btn {
+            background: var(--primary);
+            color: white;
+            padding: 14px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 700;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+        }
+
+        .apply-btn:hover {
+            background: var(--primary-dark);
+            box-shadow: 0 6px 16px rgba(37, 99, 235, 0.25);
+        }
+
+        /* Trust Bar */
+        .trust-bar {
+            background: #111827;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .trust-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            opacity: 0.8;
+        }
+
+        /* Main CTA */
+        .main-cta {
+            padding: 100px 0;
+            text-align: center;
+            background: linear-gradient(to bottom, #ffffff, #eff6ff);
+        }
+
+        .main-cta h2 {
+            font-size: 36px;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 20px 40px;
+            border-radius: 12px;
+            font-size: 20px;
+            font-weight: 800;
+            box-shadow: 0 10px 20px -5px rgba(37, 99, 235, 0.4);
+            animation: pulse-blue 2s infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes pulse-blue {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(37, 99, 235, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+        }
+
+        .cta-note {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 0;
+            background: var(--bg-gray);
+            border-top: 1px solid #e5e7eb;
+            text-align: center;
+        }
+
+        .footer-links {
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .disclaimer {
+            font-size: 12px;
+            color: #9ca3af;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero { padding: 60px 0 40px; }
+            .hero h1 { font-size: 36px; line-height: 1.2; margin-bottom: 16px; }
+            .hero p { font-size: 16px; margin-bottom: 32px; padding: 0 10px; }
+            
+            .hero-stats { 
+                flex-direction: column; 
+                gap: 24px; 
+                background: white;
+                padding: 24px;
+                border-radius: 20px;
+                border: 1px solid var(--border);
+                box-shadow: var(--shadow);
+            }
+            
+            .stat-value { font-size: 28px; }
+            
+            .section-title h2 { font-size: 28px; }
+            .section-title p { font-size: 16px; }
+            
+            .grid { 
+                grid-template-columns: 1fr; 
+                gap: 20px;
+            }
+            
+            .category-card { padding: 30px; min-height: auto; }
+            
+            .how-to-apply { padding: 60px 0; }
+            .steps-grid { gap: 30px; }
+            
+            .main-cta { padding: 60px 0; }
+            .main-cta h2 { font-size: 26px; }
+            .cta-button { width: 100%; padding: 16px 20px; font-size: 18px; }
+            
+            .header-badge { display: none; }
+            .logo { font-size: 22px; }
+            .join-now-btn { padding: 8px 16px; font-size: 13px; }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 32px; }
+            .hero-stats { margin: 0 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-content">
+            <div class="logo">Jobs<span>Now</span></div>
+            <div class="header-actions">
+                <div class="header-badge">✅ Free to Apply</div>
+                <a href="https://www.af9m8trk.com/ZAK11BD6/QLQ11Y4B/" class="join-now-btn">Join Now</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero bg-grid">
+        <div class="container">
+            <div class="urgency-badge fade-up">
+                🔥 500+ Companies Hiring Right Now
+            </div>
+            <h1 class="fade-up">Find Your Perfect Work From Home Job Today</h1>
+            <p class="fade-up">Join thousands of professionals earning from home. No experience needed for most roles. Apply in 2 minutes.</p>
+            
+            <div class="hero-stats fade-up">
+                <div class="stat-item">
+                    <span class="stat-value">500+</span>
+                    <span class="stat-label">Jobs Available</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">$15-$45/hr</span>
+                    <span class="stat-label">Average Pay</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">100%</span>
+                    <span class="stat-label">Remote</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="job-categories">
+        <div class="container">
+            <div class="section-title fade-up">
+                <h2>Browse Top Remote Categories</h2>
+                <p>Explore high-paying opportunities across various industries. Start your career from anywhere in the world.</p>
+            </div>
+            <div class="grid">
+                <a href="https://www.af9m8trk.com/ZAK11BD6/QLQ11Y4B/" class="category-card fade-up">
+                    <div class="category-icon">💻</div>
+                    <div class="category-name">Data Entry</div>
+                    <div class="category-pay">$18-25/hr</div>
+                    <div class="category-desc">No experience needed</div>
+                    <div class="card-apply-btn">Apply Now</div>
+                </a>
+                <a href="https://www.af9m8trk.com/ZAK11BD6/QLQ11Y4B/" class="category-card fade-up">
+                    <div class="category-icon">🎧</div>
+                    <div class="category-name">Customer Service</div>
+                    <div class="category-pay">$15-22/hr</div>
+                    <div class="category-desc">Full & part time available</div>
+                    <div class="card-apply-btn">Apply Now</div>
+                </a>
+                <a href="https://www.af9m8trk.com/ZAK11BD6/QLQ11Y4B/" class="category-card fade-up">
+                    <div class="category-icon">📱</div>
+                    <div class="category-name">Social Media Manager</div>
+                    <div class="category-pay">$20-35/hr</div>
+                    <div class="category-desc">Work your own hours</div>
+                    <div class="card-apply-btn">Apply Now</div>
+                </a>
+                <a href="https://www.af9m8trk.com/ZAK11BD6/QLQ11Y4B/" class="category-card fade-up">
+                    <div class="category-icon">✍️</div>
+                    <div class="category-name">Content Writer</div>
+                    <div class="category-pay">$20-40/hr</div>
+                    <div class="category-desc">Write from anywhere</div>
+                    <div class="card-apply-btn">Apply Now</div>
+                </a>
+                <a href="https://www.af9m8trk.com/ZAK11BD6/QLQ11Y4B/" class="category-card fade-up">
+                    <div class="category-icon">🛒</div>
+                    <div class="category-name">Amazon/Shopify Assistant</div>
+                    <div class="category-pay">$18-28/hr</div>
+                    <div class="category-desc">Flexible hours</div>
+                    <div class="card-apply-btn">Apply Now</div>
+                </a>
+                <a href="https://www.af9m8trk.com/ZAK11BD6/QLQ11Y4B/" class="category-card fade-up">
+                    <div class="category-icon">🖥️</div>
+                    <div class="category-name">Virtual Assistant</div>
+                    <div class="category-pay">$15-30/hr</div>
+                    <div class="category-desc">Entry level welcome</div>
+                    <div class="card-apply-btn">Apply Now</div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-to-apply">
+        <div class="container">
+            <div class="section-title fade-up">
+                <h2>How To Apply</h2>
+            </div>
+            <div class="steps-grid">
+                <div class="step-item fade-up">
+                    <div class="step-number">1</div>
+                    <div class="step-title">📝 Browse Available Jobs</div>
+                    <div class="step-desc">See hundreds of remote openings tailored to your skills.</div>
+                </div>
+                <div class="step-item fade-up">
+                    <div class="step-number">2</div>
+                    <div class="step-title">✅ Submit Your Info</div>
+                    <div class="step-desc">Takes less than 2 minutes to complete your application.</div>
+                </div>
+                <div class="step-item fade-up">
+                    <div class="step-number">3</div>
+                    <div class="step-title">💰 Get Hired & Get Paid</div>
+                    <div class="step-desc">Start working within days and receive weekly payments.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title fade-up">
+                <h2>Success Stories</h2>
+            </div>
+            <div class="grid">
+                <div class="testimonial-card fade-up">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"Found a remote customer service job and now work from home full time. The process was so easy!"</p>
+                    <p class="testimonial-author">Sarah K., Texas USA</p>
+                </div>
+                <div class="testimonial-card fade-up">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"Applied on Monday, had an interview by Wednesday. Amazing! I never thought finding a remote job could be this fast."</p>
+                    <p class="testimonial-author">James R., London UK</p>
+                </div>
+                <div class="testimonial-card fade-up">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"As a mum of two this has been life changing. I work my own hours and never miss a moment with my kids."</p>
+                    <p class="testimonial-author">Michelle T., Toronto Canada</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="urgency-section">
+        <div class="container">
+            <div class="section-title fade-up">
+                <h2>⚡ These Positions Fill Fast</h2>
+            </div>
+            <div class="grid">
+                <div class="job-card fade-up">
+                    <div class="hiring-badge">Urgently Hiring</div>
+                    <div class="job-company">CloudScale Solutions</div>
+                    <div class="job-role">Data Entry Clerk</div>
+                    <div class="job-salary">$22/hr</div>
+                    <a href="https://www.af9m8trk.com/ZAK11BD6/QLQ11Y4B/" class="apply-btn">Apply Now</a>
+                </div>
+                <div class="job-card fade-up">
+                    <div class="hiring-badge">Urgently Hiring</div>
+                    <div class="job-company">Global Support Hub</div>
+                    <div class="job-role">Customer Support Rep</div>
+                    <div class="job-salary">$19/hr</div>
+                    <a href="https://www.af9m8trk.com/ZAK11BD6/QLQ11Y4B/" class="apply-btn">Apply Now</a>
+                </div>
+                <div class="job-card fade-up">
+                    <div class="hiring-badge">Urgently Hiring</div>
+                    <div class="job-company">TrendMedia Agency</div>
+                    <div class="job-role">Social Media Assistant</div>
+                    <div class="job-salary">$25/hr</div>
+                    <a href="https://www.af9m8trk.com/ZAK11BD6/QLQ11Y4B/" class="apply-btn">Apply Now</a>
+                </div>
+                <div class="job-card fade-up">
+                    <div class="hiring-badge">Urgently Hiring</div>
+                    <div class="job-company">Prime Logistics</div>
+                    <div class="job-role">Virtual Assistant</div>
+                    <div class="job-salary">$20/hr</div>
+                    <a href="https://www.af9m8trk.com/ZAK11BD6/QLQ11Y4B/" class="apply-btn">Apply Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="trust-bar">
+        <div class="container trust-content">
+            <span>🔒 Secure</span>
+            <span>💼 500+ Companies</span>
+            <span>🆓 Free to Apply</span>
+            <span>⚡ Quick Apply</span>
+            <span>🌍 USA · UK · Canada · Australia</span>
+        </div>
+    </div>
+
+    <section class="main-cta">
+        <div class="container">
+            <h2 class="fade-up">Start Your Work From Home Career Today</h2>
+            <a href="https://www.af9m8trk.com/ZAK11BD6/QLQ11Y4B/" class="cta-button fade-up">
+                🚀 Browse Available Jobs →
+            </a>
+            <div class="cta-note fade-up">
+                Free to apply · No experience needed · 2 minute application
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="https://www.af9m8trk.com/ZAK11BD6/QLQ11Y4B/">Privacy Policy</a>
+                <a href="https://www.af9m8trk.com/ZAK11BD6/QLQ11Y4B/">Terms</a>
+                <a href="https://www.af9m8trk.com/ZAK11BD6/QLQ11Y4B/">Contact</a>
+            </div>
+            <p class="disclaimer">
+                © 2026 JobsNow. This site connects job seekers with employment opportunities. 
+                Salary ranges are estimates. Individual results may vary.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Intersection Observer for fade-up animations
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-up').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add click event to category cards to redirect
+        document.querySelectorAll('.category-card').forEach(card => {
+            card.addEventListener('click', (e) => {
+                // If it's not the link itself (though cards are wrapped in <a> now)
+                // Just let the default link behavior happen.
+            });
+        });
+    </script>
+</body>
+</html>
